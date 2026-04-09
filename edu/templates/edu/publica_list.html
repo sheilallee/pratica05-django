@@ -1,0 +1,38 @@
+{% extends 'edu/base.html' %}
+
+{% block title %}Publicações{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h2>Publicações (Livro × Autor)</h2>
+    <a href="{% url 'publica_create' %}" class="btn btn-success">+ Nova Publicação</a>
+</div>
+
+{% if publicacoes %}
+<table>
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Livro</th>
+            <th>Autor</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for pub in publicacoes %}
+        <tr>
+            <td>{{ pub.id }}</td>
+            <td>{{ pub.livro.titulo }}</td>
+            <td>{{ pub.autor.nome }}</td>
+            <td>
+                <a href="{% url 'publica_update' pub.pk %}" class="btn btn-warning">Editar</a>
+                <a href="{% url 'publica_delete' pub.pk %}" class="btn btn-danger">Excluir</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p style="color:#777; margin-top:1rem;">Nenhuma publicação cadastrada.</p>
+{% endif %}
+{% endblock %}

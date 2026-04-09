@@ -1,0 +1,27 @@
+{% extends 'edu/base.html' %}
+
+{% block title %}Biblioteca - Início{% endblock %}
+
+{% block content %}
+<h2>Painel de Controle</h2>
+<p style="color:#555; margin-top:0.5rem;">Gerencie os registros da biblioteca através dos módulos abaixo.</p>
+
+<div class="cards">
+    <a class="card" href="{% url 'autor_list' %}">
+        <div class="card-number">{{ total_autores }}</div>
+        <div class="card-label">Autores</div>
+    </a>
+    <a class="card" href="{% url 'editora_list' %}">
+        <div class="card-number">{{ total_editoras }}</div>
+        <div class="card-label">Editoras</div>
+    </a>
+    <a class="card" href="{% url 'livro_list' %}">
+        <div class="card-number">{{ total_livros }}</div>
+        <div class="card-label">Livros</div>
+    </a>
+    <a class="card" href="{% url 'publica_list' %}">
+        <div class="card-number">{{ total_publicacoes }}</div>
+        <div class="card-label">Publicações</div>
+    </a>
+</div>
+{% endblock %}

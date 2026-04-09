@@ -1,0 +1,38 @@
+{% extends 'edu/base.html' %}
+
+{% block title %}Autores{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h2>Autores</h2>
+    <a href="{% url 'autor_create' %}" class="btn btn-success">+ Novo Autor</a>
+</div>
+
+{% if autores %}
+<table>
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Nome</th>
+            <th>Publicações</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for autor in autores %}
+        <tr>
+            <td>{{ autor.id }}</td>
+            <td>{{ autor.nome }}</td>
+            <td>{{ autor.publicacoes.count }}</td>
+            <td>
+                <a href="{% url 'autor_update' autor.pk %}" class="btn btn-warning">Editar</a>
+                <a href="{% url 'autor_delete' autor.pk %}" class="btn btn-danger">Excluir</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p style="color:#777; margin-top:1rem;">Nenhum autor cadastrado.</p>
+{% endif %}
+{% endblock %}

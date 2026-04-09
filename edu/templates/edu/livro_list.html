@@ -1,0 +1,46 @@
+{% extends 'edu/base.html' %}
+
+{% block title %}Livros{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h2>Livros</h2>
+    <a href="{% url 'livro_create' %}" class="btn btn-success">+ Novo Livro</a>
+</div>
+
+{% if livros %}
+<table>
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>ISBN</th>
+            <th>Título</th>
+            <th>Editora</th>
+            <th>Publicação</th>
+            <th>Preço</th>
+            <th>Estoque</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for livro in livros %}
+        <tr>
+            <td>{{ livro.id }}</td>
+            <td>{{ livro.isbn }}</td>
+            <td>{{ livro.titulo }}</td>
+            <td>{{ livro.editora.nome }}</td>
+            <td>{{ livro.publicacao|date:"d/m/Y" }}</td>
+            <td>R$ {{ livro.preco }}</td>
+            <td>{{ livro.estoque }}</td>
+            <td>
+                <a href="{% url 'livro_update' livro.pk %}" class="btn btn-warning">Editar</a>
+                <a href="{% url 'livro_delete' livro.pk %}" class="btn btn-danger">Excluir</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p style="color:#777; margin-top:1rem;">Nenhum livro cadastrado.</p>
+{% endif %}
+{% endblock %}

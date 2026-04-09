@@ -1,0 +1,24 @@
+{% extends 'edu/base.html' %}
+
+{% block title %}Confirmar Exclusão{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h2>Confirmar Exclusão</h2>
+</div>
+
+<div class="form-card" style="max-width:500px;">
+    <p style="margin-bottom:1.5rem; font-size:1.05rem;">
+        Tem certeza que deseja excluir o(a) <strong>{{ tipo }}</strong>:<br>
+        <strong style="color:#dc3545;">{{ objeto }}</strong>?
+    </p>
+    <p style="color:#777; font-size:0.9rem; margin-bottom:1.5rem;">
+        Esta ação não pode ser desfeita.
+    </p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Sim, excluir</button>
+        <a href="{% url cancel_url %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock %}
